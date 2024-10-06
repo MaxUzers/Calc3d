@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор 3д печати</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Калькулятор 3д печати</h1>
+
+    <!-- Поля ввода -->
+    <label for="modelName">Название модели:</label>
+    <input type="text" id="modelName"><br><br>
+
+    <label for="filamentWeight">Вес изделия (г):</label>
+    <input type="number" id="filamentWeight" step="0.01"><br><br>
+
+    <label for="filamentCost">Стоимость филамента за килограмм (₽):</label>
+    <input type="number" id="filamentCost" step="0.01"><br><br>
+
+    <label for="printTime">Время печати (часы):</label>
+    <input type="number" id="printTime" step="0.01"><br><br>
+
+    <label for="electricityCost">Стоимость электроэнергии за час (₽):</label>
+    <input type="number" id="electricityCost" step="0.01"><br><br>
+
+    <label for="maintenanceCost">Стоимость обслуживания принтера за час (₽):</label>
+    <input type="number" id="maintenanceCost" step="0.01"><br><br>
+
+    <label for="markup">Наценка (%)</label>
+    <input type="number" id="markup" step="0.01"><br><br>
+
+    <label for="gcodeFile">Загрузить G-code файл:</label>
+    <input type="file" id="gcodeFile" accept=".gcode"><br><br>
+
+    <button onclick="calculateCost()">Рассчитать стоимость</button>
+<button id="updateCostsButton">Обновить стоимость</button>
+
+    <!-- Вывод результатов -->
+    <h2>Общая стоимость: <span id="totalCost">0</span> ₽</h2>
+    <h2>Стоимость с наценкой: <span id="totalCostWithMarkup">0</span> ₽</h2>
+
+    <!-- Таблица с историей расчетов -->
+    <h2>История расчетов</h2>
+    <table id="costTable">
+        <thead>
+            <tr>
+                <th>Название модели</th>
+                <th>Вес изделия (г)</th>
+                <th>Стоимость филамента (₽/кг)</th>
+                <th>Время печати (ч)</th>
+                <th>Электроэнергия (₽)</th>
+                <th>Обслуживание (₽)</th>
+                <th>Общая стоимость (₽)</th>
+                <th>Стоимость с наценкой (₽)</th>
+                <th>Суммировать</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <!-- Суммированные значения -->
+    <h2>Суммированная общая стоимость: <span id="summedTotalCost">0</span> ₽</h2>
+    <h2>Суммированная стоимость с наценкой: <span id="summedTotalCostWithMarkup">0</span> ₽</h2>
+
+    <!-- Подключаем скрипты -->
+        <script src="js/handleFile.js" defer></script>
+    <script src="js/parseGcode.js" defer></script>
+    <script src="js/calculateCost.js" defer></script>
+    <script src="js/tableFunctions.js" defer></script>
+    <script src="js/summedCosts.js" defer></script>
+
+
+</body>
+</html>
